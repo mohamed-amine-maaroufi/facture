@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="400dp"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+
+
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Nom de produit:" />
+
+    <EditText
+        android:id="@+id/edt_productname"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:hint="Nom de produit:" />
+
+
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Réference:" />
+
+    <EditText
+        android:id="@+id/edt_reference"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:hint="Réference:" />
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Prix unitaire" />
+
+    <EditText
+        android:id="@+id/edt_unitprice"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:inputType="number"
+        android:hint="Prix unitaire" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Quantité" />
+
+    <EditText
+        android:id="@+id/edt_qantity"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:inputType="number"
+        android:hint="Quantité" />
+
+
+    <Button
+        android:id="@+id/saveproduct"
+        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:text="Enregister"
+        android:textColor="#fff"
+        android:layout_gravity="center"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
+
+        android:background="@drawable/shape_btn"
+        />
+
+</LinearLayout>
