@@ -1,16 +1,20 @@
 package com.android.factureapp;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -23,6 +27,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -58,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
     public EditText edt_tva;
     Button dialogButton;
     TextView textView_totalPrice;
+    ImageView imageViewLogo;
 
     Spinner spinner_client;
     EditText edt_company, edt_town, edt_email, edt_phone, edt_address;
@@ -71,6 +77,9 @@ public class MainActivity extends AppCompatActivity {
     public static int recordCount;
 
     private String factureName;
+
+    final int GALLERY_REQUEST_CODE = 120;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,27 +100,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-       /* Button btn_list = findViewById(R.id.btn_list);
-        btn_list.setOnClickListener(new View.OnClickListener() {
+        //pic image logo from gallery
+        imageViewLogo = findViewById(R.id.imageViewLogo);
+        imageViewLogo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                String folder_main = getString(R.string.app_name);
-
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                Uri uri = Uri.parse("");
-                intent.setDataAndType(uri, "application/pdf");
-                startActivity(Intent.createChooser(intent, "Open folder"));
-
-
-                if (intent.resolveActivityInfo(getPackageManager(), 0) != null)
-                {
-                    startActivity(intent);
-                }else{
-                    Toast.makeText(MainActivity.this,"Le dossier des factures ne existe pas.", Toast.LENGTH_SHORT).show();
-                }
+                pickFromGallery();
             }
-        });*/
+        });
 
         productList  = new TableControllerProduct(this).read();
 
@@ -119,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
         textView_totalPrice = findViewById(R.id.text_totalprice);
         llScroll = findViewById(R.id.llScroll);
         btn_generateFacture = findViewById(R.id.btn_generateFacture);
+
 
         /* Set Text Watcher listener */
         edt_tva.addTextChangedListener(TotalPriceWatcher);
@@ -470,6 +468,34 @@ public class MainActivity extends AppCompatActivity {
         String timeStamp = String.valueOf(TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis()));
         return timeStamp;
     }
+
+
+
+    private void pickFromGallery(){
+        //Create an Intent with action as ACTION_PICK
+        Intent intent=new Intent(Intent.ACTION_PICK);
+        // Sets the type as image/*. This ensures only components of type image are selected
+        intent.setType("image/*");
+        //We pass an extra array with the accepted mime types. This will ensure only components with these MIME types as targeted.
+        String[] mimeTypes = {"image/jpeg", "image/png"};
+        intent.putExtra(Intent.EXTRA_MIME_TYPES,mimeTypes);
+        // Launching the Intent
+        startActivityForResult(intent,GALLERY_REQUEST_CODE);
+    }
+
+    public void onActivityResult(int requestCode,int resultCode,Intent data){
+        // Result code is RESULT_OK only if the user selects an Image
+        if (resultCode == Activity.RESULT_OK)
+            switch (requestCode){
+                case GALLERY_REQUEST_CODE:
+                    //data.getData returns the content URI for the selected Image
+                    Uri selectedImage = data.getData();
+                    imageViewLogo.setImageURI(selectedImage);
+                    imageViewLogo.setBackgroundColor(Color.WHITE);
+                    break;
+            }
+    }
+
 
 
 }

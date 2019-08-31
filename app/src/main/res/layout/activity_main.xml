@@ -71,12 +71,21 @@
         android:layout_marginBottom="10dp"
         android:layout_below="@+id/textViewRecordCount" >
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/llScroll"
             android:background="#fff"
             android:orientation="vertical" >
+
+            <ImageView
+                android:layout_width="200px"
+                android:layout_height="200px"
+                android:id="@+id/imageViewLogo"
+                android:background="@drawable/ic_add"
+                android:layout_gravity="center"
+                android:layout_margin="5dp"/>
 
             <LinearLayout
             android:id="@+id/linearLayoutRecords"
@@ -193,6 +202,36 @@
                     android:id="@+id/text_totalprice"/>
 
             </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp">
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:layout_weight="1"
+                    android:background="#fff"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="3dp"
+                    android:text="Signature"
+                    android:textStyle="bold"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="40dp"/>
 
 
 
