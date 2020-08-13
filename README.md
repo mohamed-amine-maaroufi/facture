@@ -1,2 +1,2 @@
-# Application pour générér les factures
-# Application pour générér les factures
+# Android application to generate bill
+
